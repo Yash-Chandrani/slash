@@ -40,9 +40,9 @@ class Wishlist(db.Model):
     user_id=db.Column(db.Integer(),db.ForeignKey('users.id'))
     product_title=db.Column(db.String(length=1000),nullable=False)
     product_link=db.Column(db.String(length=1000),nullable=False)
-    product_price=db.Column(db.Float(),nullable=False)
+    product_price=db.Column(db.Float())
     product_website=db.Column(db.String(length=100),nullable=False)
-    product_rating=db.Column(db.Float(),nullable=False)
+    product_rating=db.Column(db.Float())
 
 @app.route("/")
 def landingpage():
@@ -128,6 +128,10 @@ def wishlist():
             return render_template("./webapp/static/wishlist.html", user=current_user.id, data=wishlists)
     return login_page()
 
-
-
-
+@app.route("/add_to_wishlist", methods=["POST","GET"])
+def add_to_wishlist():
+    data = request.get_json()
+    print(data)
+    # Process the dynamic data as needed
+    response_data = {'message': 'Data received successfully'}
+    return response_data()

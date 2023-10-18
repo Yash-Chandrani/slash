@@ -175,17 +175,26 @@
               </tbody>
            </table>
            <script>
-              if ('{{user_login}}'=='True'){
+              if ('{{current_user.is_authenticated}}'=='True'){
                 var table=document.getElementById("result-table");
                 
-                function showWishlists(){
-                  // TO-DO: add code to add product in wishlist
-                }
                 for (var i=2; i<table.rows.length; i++) {
                   var button = document.createElement("button");
                   button.textContent = "Add to wishlist";
-                  button.addEventListener("click", showWishlists);
-
+                  button.addEventListener("click", function showWishlists(){
+                    fetch('/add_to_wishlist', {
+                      method: 'POST',
+                      headers: {"Content-Type": "application/json"},
+                      body: JSON.stringify({title:table.rows[i].cells[0], price:table.rows[i].cells[2], website:table.rows[i].cells[3], rating:table.rows[i].cells[4]}),
+                    }).then(
+                      response => response.json()
+                    ).then(data => {
+                      console.log(data)
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+                  });
                   var row = table.rows[i];                
                   var cell=document.createElement("td");
                   cell.appendChild(button)
