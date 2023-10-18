@@ -37,7 +37,6 @@ class Users(db.Model, UserMixin):
 
 class Wishlist(db.Model):
     id=db.Column(db.Integer(),primary_key=True)
-    name=db.Column(db.String(length=1000),nullable=False)
     user_id=db.Column(db.Integer(),db.ForeignKey('users.id'))
     product_title=db.Column(db.String(length=1000),nullable=False)
     product_link=db.Column(db.String(length=1000),nullable=False)
@@ -126,17 +125,6 @@ def logout_page():
 def wishlist():
     if current_user.is_authenticated:
             wishlists= Wishlist.query.filter_by(user_id=current_user.id).all()
-            data={}
-            for item in wishlists:
-                entry={"name":item.name,"product_title":item.product_title,"product_link":item.product_link,"product_price":item.product_price,"product_rating":item.product_rating,"product_website":item.product_website}
-                if data.get(item.name) ==None:
-                    data[item.name]=[entry]
-                else:
-                    data[item.name].append(entry)
-
-            wishlists=[]
-            for item in data:
-                wishlists.append({"name":item, "products":data[item]})
             return render_template("./webapp/static/wishlist.html", user=current_user.id, data=wishlists)
     return login_page()
 
