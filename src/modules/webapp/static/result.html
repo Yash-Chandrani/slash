@@ -73,9 +73,9 @@
     </style>
     
    </head>
-   <body>   
-   
-    <div class="container" id="abc">
+   <body>
+
+        <div class="container" id="abc">
         <div class="row">
           <div class="col-sm">
             <div class="form-group">
@@ -146,7 +146,7 @@
       <div class="results">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-           <table border='1' class="item-list" >
+           <table border='1' class="item-list" id="result-table" >
               <thead>
                  <tr>
                     <th colspan="5">Products</th>
@@ -174,9 +174,28 @@
 
               </tbody>
            </table>
+           <script>
+              if ('{{user_login}}'=='True'){
+                var table=document.getElementById("result-table");
+                
+                function showWishlists(){
+                  // TO-DO: add code to add product in wishlist
+                }
+                for (var i=2; i<table.rows.length; i++) {
+                  var button = document.createElement("button");
+                  button.textContent = "Add to wishlist";
+                  button.addEventListener("click", showWishlists);
+
+                  var row = table.rows[i];                
+                  var cell=document.createElement("td");
+                  cell.appendChild(button)
+                  row.appendChild(cell);
+                }
+              }
+          </script>
         </div>
         <div class="col-md-4"></div>
      </div>
 
-</body>
+</body>   
 </html>

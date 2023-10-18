@@ -58,7 +58,7 @@ def product_search(new_product="", sort=None, currency=None, num=None):
 
     data = driver(product, currency, num, 0, False, None, True, sort)
 
-    return render_template("./webapp/static/result.html", data=data, prod=product)
+    return render_template("./webapp/static/result.html", data=data, prod=product, user_login=current_user.is_authenticated)
 
 
 @app.route("/filter", methods=["POST", "GET"])
