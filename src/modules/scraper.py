@@ -251,7 +251,7 @@ def condense_helper(result_condensed, list, num):
 
 
 def driver(
-    product, currency, num=None, df_flag=0, csv=False, cd=None, ui=False, sort=None
+    product, currency, num=None, df_flag=0, csv=None, cd=None, ui=False, sort=None
 ):
     """Returns csv is the user enters the --csv arg,
     else will display the result table in the terminal based on the args entered by the user"""

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Slash Mini-Version</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="/static/style.css">
+	<link rel="stylesheet" href="/static/style.css"><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"  ></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        .item-list {
+         word-wrap: break-word;
+         text-align:center;
+         width: 50%;
+         margin-top: 20px;
+         padding: 5px 5px 5px 5px;
+         }
+         .td,th {
+         border: 1px solid;
+         padding: 1px;
+         }
+         .item-list tr:nth-child(even)
+         {
+         background-color: rgb(232, 255, 235);
+         word-wrap: break-word;
+         }
+
+         .col-sm
+         {
+            padding-top: 25px;
+            word-wrap: break-word;
+
+
+         }
+         .results
+         {
+
+         padding-left: 10px;
+         width: 2000px;
+
+         }
+
+         .button
+         {
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+         }
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+
+}
+#choice1
+{
+   width: 200px;
+
+}
+.button1:hover {
+  background-color: rgb(63, 155, 112);
+  color: white;
+}
+
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+      <div class="results">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+           <table border='1' class="item-list" >
+              <thead>
+                 <tr>
+                    <th colspan="5">Products</th>
+                 </tr>
+                 <tr>
+                    <td>Timestamp</td>
+                    <td>Title</td>
+                    <td>Price</td>
+                    <td>Website</td>
+                    <td>Rating</td>
+               </tr>
+              </thead>
+              <tbody>
+
+               {% for product in data %}
+               <tr>
+                  <td>{{product.timestamp}}</td>
+                  <td><a href={{product.link}} target="_blank">{{product.title}}</a></td>
+                  <td>{{product.price}}</td>
+                  <td>{{product.website}}</td>
+                  <td>{{product.rating}}</td>
+               </tr>
+
+               {% endfor %}
+
+              </tbody>
+           </table>
+        </div>
+        <div class="col-md-4"></div>
+     </div>
+</body>
+</html>

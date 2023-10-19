@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+</head>
+
+<body>
+    <!-- To-do: Change apperance of this webpage -->
+    <div class="container">
+        <table border='1' class="item-list">
+            <thead> 
+                <tr>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Website</td>
+                    <td>Rating</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for product in data %}
+                <tr>
+                    <td><a href={{product.product_link}} target="_blank">{{product.product_title}}</a></td>
+                    <td>{{product.product_price}}</td>
+                    <td>{{product.product_website}}</td>
+                    <td>{{product.product_rating}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
