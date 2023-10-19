@@ -13,10 +13,8 @@ config = pdfkit.configuration(wkhtmltopdf=path_wkhtmltopdf)
 from flask import Flask, request, render_template, url_for, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
-
 from flask_login import login_user, LoginManager, UserMixin,logout_user, current_user
-from scraper import driver
-
+from src.modules.scraper import driver
 # from forms import RegisterForm
 from sqlalchemy.exc import IntegrityError
 
@@ -116,7 +114,7 @@ def product_search_filtered():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register_page():
-    from forms import RegisterForm
+    from src.modules.forms import RegisterForm
     form = RegisterForm()
     if form.validate_on_submit():
         try:
@@ -125,6 +123,7 @@ def register_page():
                                    passwordInput=form.password1.data)
             db.session.add(user_to_create)
             db.session.commit()
+            flash('Registered successfully! Login to create wishlists', category='success')
             return redirect(url_for('landingpage'))
         except IntegrityError:
             db.session.rollback()
@@ -137,7 +136,7 @@ def register_page():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login_page():
-    from forms import LoginForm
+    from  src.modules.forms import LoginForm
     form = LoginForm()
     if form.validate_on_submit():
         attempted_user = Users.query.filter_by(email=form.email.data).first()
